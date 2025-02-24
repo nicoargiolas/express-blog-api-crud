@@ -1,14 +1,16 @@
 const express = require('express');
 const app = express();
+const cors = require("cors");
 const port = 3000;
-const errorsHandler = require('./middlewares/errorsHandler');
-const notFound = require('./middlewares/notFound');
 
 app.use(express.json());
+app.use(cors({ origin: 'http://localhost:5173' }));
 
 // Importazione
 const posts = require('./data/posts');
 const postsRouter = require('./routers/posts-router');
+const errorsHandler = require('./middlewares/errorsHandler');
+const notFound = require('./middlewares/notFound');
 
 app.use(express.static('public'));
 
